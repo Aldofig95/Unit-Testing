@@ -46,4 +46,20 @@ public class UnitTest1
     {
         return value % 2 == 0;
     }
+
+    [Theory]
+    [InlineData("racecar", true)]
+    [InlineData("hello", false)]
+    [InlineData("madam", true)]
+    [InlineData("world", false)]
+    public void PalindromeTest(string input, bool expected)
+    {
+        Assert.Equal(expected, IsPalindrome(input));
+    }
+
+    bool IsPalindrome(string input)
+    {
+        var reversed = new string(input.Reverse().ToArray());
+        return input.Equals(reversed, StringComparison.OrdinalIgnoreCase);
+    }
 }
